@@ -1,20 +1,22 @@
 package inventory.im_project.domain;
 
 import inventory.im_project.controller.MemberForm;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Address {
 
     @Id
     @GeneratedValue
+    @Column(name = "address_id")
     private Long id;
     private String city;
     private String street;
@@ -24,7 +26,10 @@ public class Address {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    protected Address() {
+    public Address(String city, String street, String zipcode) {
+        this.city = city;
+        this.street = street;
+        this.zipcode = zipcode;
     }
 
     public Address(MemberForm form) {

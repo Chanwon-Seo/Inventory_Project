@@ -61,7 +61,6 @@ public class MemberService {
         System.out.println(result.get().getUserId());
         System.out.println(result.get().getPassword());
 
-
         /**
          * 참이 나오면 비어있다.
          * false나오면 데이터가 있다.

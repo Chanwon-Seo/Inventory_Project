@@ -1,15 +1,12 @@
 package inventory.im_project.controller;
 
-import inventory.im_project.domain.Address;
-import inventory.im_project.domain.Member;
-import inventory.im_project.repository.AddressRepository;
 import inventory.im_project.service.MemberService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -49,10 +46,13 @@ public class MemberController {
     /**
      * 로그인
      */
-
     @PostMapping("/login")
-    public String login(@Valid MemberLoginForm loginForm, BindingResult loginResult) {
+    public String login(@Valid @ModelAttribute MemberLoginForm loginForm, BindingResult loginResult) {
         int loginNum = memberService.login(loginForm, loginForm.getUser_id());
+
+        if (loginNum == 0) {
+            loginResult.rejectValue("password", null, "비밀번호가 틀립니다.");
+        }
 
         if (loginResult.hasErrors()) {
             return "members/login";
