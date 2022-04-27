@@ -1,23 +1,17 @@
 package inventory.im_project.service;
 
-import inventory.im_project.controller.MemberForm;
-import inventory.im_project.controller.MemberLoginForm;
+import inventory.im_project.controller.form.MemberForm;
+import inventory.im_project.controller.form.MemberLoginForm;
 import inventory.im_project.domain.Address;
 import inventory.im_project.domain.Member;
 import inventory.im_project.repository.AddressRepository;
 import inventory.im_project.repository.MemberRepository;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.validation.constraints.NotEmpty;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toList;
 
 @Service
 @Transactional(readOnly = true)

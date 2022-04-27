@@ -1,6 +1,6 @@
 package inventory.im_project.domain;
 
-import inventory.im_project.controller.MemberForm;
+import inventory.im_project.controller.form.MemberForm;
 import lombok.*;
 
 import javax.persistence.*;

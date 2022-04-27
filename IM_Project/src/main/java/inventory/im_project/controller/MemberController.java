@@ -1,5 +1,7 @@
 package inventory.im_project.controller;
 
+import inventory.im_project.controller.form.MemberForm;
+import inventory.im_project.controller.form.MemberLoginForm;
 import inventory.im_project.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

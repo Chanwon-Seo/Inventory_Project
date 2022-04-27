@@ -1,12 +1,8 @@
 package inventory.im_project.domain;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import inventory.im_project.controller.form.InventoryForm;
+import inventory.im_project.controller.form.MemberForm;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -15,6 +11,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Inventory {
 
@@ -31,6 +28,12 @@ public class Inventory {
     private LocalDateTime updateDate;
     private int count;
     private int price;
+
+    public Inventory(InventoryForm form) {
+        this.name = form.getName();
+        this.count = form.getCount();
+        this.price = form.getPrice();
+    }
 
     public Inventory(String name, int count, int price) {
         this.name = name;
