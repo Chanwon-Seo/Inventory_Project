@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+    <table border="1">
+        <tr>
+            <td>
+                <a href="/joinForm"><p class="text-muted">회원가입</p></a>
+            </td>
+            <td>
+                <a href="/loginForm"><p class="text-muted">로그인</p></a>
+            </td>
+        </tr>
+    </table>
+</div> <!-- /container -->
+
+</body>
+</html>
