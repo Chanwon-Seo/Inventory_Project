@@ -1,30 +1,39 @@
 package com.example.im_project.controller;
 
+import com.example.im_project.config.auth.PrincipalDetails;
 import com.example.im_project.controller.form.MemberForm;
 import com.example.im_project.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @Controller
 @RequiredArgsConstructor
-//@Slf4j
+@Slf4j
 public class MemberController {
 
     private final MemberService memberService;
 
+    @GetMapping("/login")
+    public String home1(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
+        String username = principalDetails.getUsername();
+        model.addAttribute("data", username);
+        return "fragments/bodyHeader";
+    }
 
     @GetMapping("/joinForm")
     public String joinForm(Model model) {
         model.addAttribute("memberForm", new MemberForm());
         return "/auth/joinForm";
     }
-
     @PostMapping("/join")
     public String join(@Valid MemberForm form, BindingResult result) {
 
@@ -40,9 +49,16 @@ public class MemberController {
         return "/auth/loginForm";
     }
 
-//    @GetMapping("")
-//    public void asdf(@AuthenticationPrincipal PrincipalDetails principalDetails) {
-//        log.info(principalDetails.getUsername());
-//    }
+    @Secured("ROLE_ADMIN")
+    @GetMapping("/info")
+    public @ResponseBody String info() {
+        return "개인정보";
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')") // 외에는 접근이 불가능 함.
+    @GetMapping("/data")
+    public @ResponseBody String data() {
+        return "개인정보";
+    }
 
 }

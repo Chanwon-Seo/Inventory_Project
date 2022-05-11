@@ -24,10 +24,27 @@
                 <td th:text="${#temporals.format(item.updateDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
                 <td th:text="${item.price}"></td>
                 <td th:text="${item.count}"></td>
+                <td>
+                    <form th:action="@{/orders/{id} (id=${item.id})}" th:method="get">
+                        <button>주문</button>
+                    </form>
+                </td>
+                <td>
+                    <form th:action="@{/items/{id}/edit (id=${item.id})}" th:method="get">
+                        <button>수정</button>
+                    </form>
+                </td>
+                <td>
+                    <form th:action="@{/items/{id}/remove (id=${item.id})}" th:method="post">
+                        <button>삭제</button>
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>
     </div>
+
+    <a href="/item/new">재고 생성하기</a>
 </div> <!-- /container -->
 </body>
 </html>

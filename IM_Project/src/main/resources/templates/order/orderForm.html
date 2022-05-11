@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"/>
+<style>
+    .fieldError {
+        border-color: #bd2130;
+    }
+</style>
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+    <form th:object="${orderForm}" method="post">
+        <!-- id -->
+        <input type="hidden" th:field="*{id}"/>
+        <div>
+            <label th:for="name">상품명</label>
+            <input type="text" th:field="*{name}" class="form-control" readonly/>
+        </div>
+        <div>
+            <label th:for="price">수량</label>
+            <input type="number" th:field="*{count}" class="form-control" readonly/>
+        </div>
+        <div>
+            <label th:for="stockQuantity">가격</label>
+            <input type="number" th:field="*{price}" class="form-control" readonly/>
+        </div>
+        <div>
+            <label th:for="price">주문할 수량</label>
+            <input type="number" th:field="*{minusCount}" class="form-control" placeholder="주문수량을 입력하세요" autofocus/>
+            <p th:if="${#fields.hasErrors('minusCount')}" th:errors="*{minusCount}">Incorrect date</p>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div> <!-- /container -->
+</body>
+</html>

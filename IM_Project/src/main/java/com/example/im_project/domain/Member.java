@@ -1,5 +1,6 @@
 package com.example.im_project.domain;
 
+import com.example.im_project.config.auth.PrincipalDetails;
 import com.example.im_project.controller.form.MemberForm;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -27,9 +28,25 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Address> addresses = new ArrayList<>();
 
+    @OneToMany(mappedBy = "member")
+    private List<Inventory> inventories = new ArrayList<>();
+
     public Member(MemberForm form) {
         this.username = form.getUsername();
         this.userId = form.getUserId();
         this.password = form.getPassword();
+    }
+
+    public Member(String username, String userId, String password, String role) {
+        this.username = username;
+        this.userId = userId;
+        this.password = password;
+        this.role = role;
+    }
+
+    public Member(String username, String userId, String password) {
+        this.username = username;
+        this.userId = userId;
+        this.password = password;
     }
 }
