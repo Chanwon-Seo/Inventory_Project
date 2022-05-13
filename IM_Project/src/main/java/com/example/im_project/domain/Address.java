@@ -1,5 +1,6 @@
 package com.example.im_project.domain;
 
+import com.example.im_project.controller.form.AddressForm;
 import com.example.im_project.controller.form.MemberForm;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -22,7 +23,7 @@ public class Address {
     private String street;
     private String zipcode;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "member_id")
     private Member member;
 
@@ -30,6 +31,12 @@ public class Address {
         this.city = city;
         this.street = street;
         this.zipcode = zipcode;
+    }
+
+    public Address(AddressForm form) {
+        this.city = form.getCity();
+        this.street = form.getStreet();
+        this.zipcode = form.getZipcode();
     }
 
     public Address(MemberForm form) {

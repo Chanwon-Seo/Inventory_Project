@@ -5,11 +5,16 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class OrderForm {
+public class itemOrderForm {
 
     private Long id;
 
     private String name;
 
-    private Integer addCount;
+    private Integer count;
+
+    private Integer price;
+
+    private Integer minusCount;
+
 }

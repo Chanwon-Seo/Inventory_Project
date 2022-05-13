@@ -25,8 +25,13 @@
                 <td th:text="${item.price}"></td>
                 <td th:text="${item.count}"></td>
                 <td>
-                    <form th:action="@{/orders/{id} (id=${item.id})}" th:method="get">
-                        <button>주문</button>
+                    <form th:action="@{/items/{id}/minus (id=${item.id})}" th:method="get">
+                        <button>출고</button>
+                    </form>
+                </td>
+                <td>
+                    <form th:action="@{/items/{id}/remove (id=${item.id})}" th:method="post">
+                        <button>삭제</button>
                     </form>
                 </td>
                 <td>
@@ -35,8 +40,8 @@
                     </form>
                 </td>
                 <td>
-                    <form th:action="@{/items/{id}/remove (id=${item.id})}" th:method="post">
-                        <button>삭제</button>
+                    <form th:action="@{/templates/order/{id} (id=${item.id})}" th:method="get">
+                        <button>발주</button>
                     </form>
                 </td>
             </tr>

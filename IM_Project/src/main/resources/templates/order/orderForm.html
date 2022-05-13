@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: header"/>
 <style>
@@ -7,29 +7,40 @@
     }
 </style>
 <body>
+<h1>발주 페이지</h1>
+<hr>
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
-    <form th:object="${orderForm}" method="post">
-        <!-- id -->
-        <input type="hidden" th:field="*{id}"/>
+    <form role="form" th:object="${orderForm}" method="post">
+        <div>
+            <p th:text="'회원명 : ' + ${data}">주문 회원명</p>
+        </div>
         <div>
             <label th:for="name">상품명</label>
-            <input type="text" th:field="*{name}" class="form-control" readonly/>
+            <input type="text" th:field="*{name}" placeholder="상품명을 입력하세요" autofocus
+                   th:class="${#fields.hasErrors('name')}? 'form-control fieldError' : 'form-control'" readonly>
+            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Incorrect date</p>
         </div>
         <div>
-            <label th:for="price">수량</label>
-            <input type="number" th:field="*{count}" class="form-control" readonly/>
+            <label th:for="addCount">발주할 수량</label>
+            <input type="text" th:field="*{addCount}" placeholder="상품명을 입력하세요"
+                   th:class="${#fields.hasErrors('addCount')}? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('addCount')}" th:errors="*{addCount}">Incorrect date</p>
         </div>
-        <div>
-            <label th:for="stockQuantity">가격</label>
-            <input type="number" th:field="*{price}" class="form-control" readonly/>
+        <div class="form-group">
+            <label for="address">주소</label>
+            <select name="addressId" id="address" class="form-control">
+                <option value="">주소 선택</option>
+                <option th:each="address : ${addresses}"
+                        th:value="${address.id}"
+                        th:text="${address.city + ' 상세주소 : ' + address.street + ' 우편번호 : ' + address.zipcode}"/>
+            </select>
         </div>
-        <div>
-            <label th:for="price">주문할 수량</label>
-            <input type="number" th:field="*{minusCount}" class="form-control" placeholder="주문수량을 입력하세요" autofocus/>
-            <p th:if="${#fields.hasErrors('minusCount')}" th:errors="*{minusCount}">Incorrect date</p>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit">발주하기</button>
+    </form>
+
+    <form th:action="@{/address/new/{id} (id=${orderForm.id})}" th:method="get">
+        <button>새로운 주소 추가</button>
     </form>
 </div> <!-- /container -->
 </body>

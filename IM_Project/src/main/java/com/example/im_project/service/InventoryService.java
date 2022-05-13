@@ -1,7 +1,7 @@
 package com.example.im_project.service;
 
 import com.example.im_project.controller.form.InventoryForm;
-import com.example.im_project.controller.form.OrderForm;
+import com.example.im_project.controller.form.itemOrderForm;
 import com.example.im_project.controller.form.UpdateForm;
 import com.example.im_project.domain.Inventory;
 import com.example.im_project.domain.Member;
@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -67,21 +66,21 @@ public class InventoryService {
         inventory.setPrice(form.getPrice());
     }
 
-    public OrderForm createOrder(Long id) {
+    public itemOrderForm createOrder(Long id) {
         Inventory findInventory = inventoryRepository.findById(id).orElse(null);
 
-        OrderForm orderForm = new OrderForm();
-        orderForm.setId(findInventory.getId());
-        orderForm.setName(findInventory.getName());
-        orderForm.setCount(findInventory.getCount());
-        orderForm.setPrice(findInventory.getPrice());
+        itemOrderForm itemOrderForm = new itemOrderForm();
+        itemOrderForm.setId(findInventory.getId());
+        itemOrderForm.setName(findInventory.getName());
+        itemOrderForm.setCount(findInventory.getCount());
+        itemOrderForm.setPrice(findInventory.getPrice());
 
-        return orderForm;
+        return itemOrderForm;
     }
 
 
     @Transactional
-    public int minCount(Long id, OrderForm form) {
+    public int minCount(Long id, itemOrderForm form) {
         Inventory inventory = inventoryRepository.findById(id).orElse(null);
 
         if (inventory.getCount() < form.getMinusCount()) {

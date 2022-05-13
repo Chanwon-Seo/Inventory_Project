@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class Delivery {
+
     @Id
     @GeneratedValue
     @Column(name = "delivery_id")
@@ -17,6 +18,4 @@ public class Delivery {
     @OneToOne(fetch = FetchType.LAZY)
     private Order order;
 
-    @Enumerated(EnumType.STRING)
-    private DeliveryStatus status;
 }

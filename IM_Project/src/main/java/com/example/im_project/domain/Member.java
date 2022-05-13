@@ -2,6 +2,7 @@ package com.example.im_project.domain;
 
 import com.example.im_project.config.auth.PrincipalDetails;
 import com.example.im_project.controller.form.MemberForm;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -25,11 +26,16 @@ public class Member {
     private String password;
     private String role; //ROLE_USER, ROLE_ADMIN
 
+    @JsonIgnore
     @OneToMany(mappedBy = "member")
-    private List<Address> addresses = new ArrayList<>();
+    private List<Order> orders = new ArrayList<>();
 
     @OneToMany(mappedBy = "member")
     private List<Inventory> inventories = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member")
+    private List<Address> addresses = new ArrayList<>();
+
 
     public Member(MemberForm form) {
         this.username = form.getUsername();

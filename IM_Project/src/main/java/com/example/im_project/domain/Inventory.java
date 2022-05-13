@@ -56,4 +56,5 @@ public class Inventory {
         this.price = price;
         this.member = member;
     }
+
 }

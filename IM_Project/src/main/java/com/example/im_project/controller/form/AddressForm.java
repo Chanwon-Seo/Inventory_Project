@@ -5,11 +5,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class OrderForm {
+public class AddressForm {
 
     private Long id;
+    private String city;
+    private String street;
+    private String zipcode;
 
-    private String name;
-
-    private Integer addCount;
 }

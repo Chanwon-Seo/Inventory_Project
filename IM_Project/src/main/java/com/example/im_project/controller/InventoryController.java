@@ -2,12 +2,12 @@ package com.example.im_project.controller;
 
 import com.example.im_project.config.auth.PrincipalDetails;
 import com.example.im_project.controller.form.InventoryForm;
+import com.example.im_project.controller.form.itemOrderForm;
 import com.example.im_project.controller.form.UpdateForm;
 import com.example.im_project.domain.Inventory;
 import com.example.im_project.service.InventoryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +17,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -81,4 +80,30 @@ public class InventoryController {
         return "redirect:/item/findAll";
     }
 
+    @GetMapping("/items/{id}/minus")
+    public String createForm(@PathVariable("id") Long id, Model model) {
+
+        itemOrderForm itemOrderForm = inventoryService.createOrder(id);
+
+        model.addAttribute("itemOrderForm", itemOrderForm);
+
+        return "inventory/inventoryOrderForm";
+    }
+
+    @PostMapping("/items/{id}/minus")
+    public String addOrder(@PathVariable("id") Long id, @ModelAttribute("itemOrderForm") itemOrderForm form, BindingResult result) {
+        int checkCount = inventoryService.minCount(id, form);
+
+        System.out.println(checkCount);
+
+        if (checkCount == 0) {
+            result.reject("orderCountOver", "출고 수량 부족");
+        }
+
+        if (result.hasErrors()) {
+            return "inventory/inventoryOrderForm";
+        }
+
+        return "redirect:/item/findAll";
+    }
 }
