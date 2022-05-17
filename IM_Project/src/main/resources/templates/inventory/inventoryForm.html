@@ -7,7 +7,7 @@
     }
 </style>
 <body>
-<h1>회원가입 페이지</h1>
+<h1>재고등록 페이지</h1>
 <hr>
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
@@ -30,7 +30,7 @@
                    th:class="${#fields.hasErrors('price')}? 'form-control fieldError' : 'form-control'">
             <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Incorrect date</p>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit">등록하기</button>
     </form>
 </div> <!-- /container -->
 </body>

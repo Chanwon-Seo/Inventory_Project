@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: header"/>
 <body>
+<h1>재고수정 페이지</h1>
+<hr>
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
     <form th:object="${updateForm}" method="post">
@@ -19,7 +21,7 @@
             <label th:for="stockQuantity">가격</label>
             <input type="number" th:field="*{price}" class="form-control" placeholder="수량을 입력하세요"/>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">수정하기</button>
     </form>
 </div> <!-- /container -->
 </body>

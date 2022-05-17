@@ -1,7 +1,7 @@
 package com.example.im_project.service;
 
 import com.example.im_project.controller.form.InventoryForm;
-import com.example.im_project.controller.form.itemOrderForm;
+import com.example.im_project.controller.form.ItemOrderForm;
 import com.example.im_project.controller.form.UpdateForm;
 import com.example.im_project.domain.Inventory;
 import com.example.im_project.domain.Member;
@@ -66,10 +66,10 @@ public class InventoryService {
         inventory.setPrice(form.getPrice());
     }
 
-    public itemOrderForm createOrder(Long id) {
+    public ItemOrderForm createOrder(Long id) {
         Inventory findInventory = inventoryRepository.findById(id).orElse(null);
 
-        itemOrderForm itemOrderForm = new itemOrderForm();
+        ItemOrderForm itemOrderForm = new ItemOrderForm();
         itemOrderForm.setId(findInventory.getId());
         itemOrderForm.setName(findInventory.getName());
         itemOrderForm.setCount(findInventory.getCount());
@@ -80,7 +80,7 @@ public class InventoryService {
 
 
     @Transactional
-    public int minCount(Long id, itemOrderForm form) {
+    public int minCount(Long id, ItemOrderForm form) {
         Inventory inventory = inventoryRepository.findById(id).orElse(null);
 
         if (inventory.getCount() < form.getMinusCount()) {

@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
-import javax.persistence.criteria.Order;
 
 @Component
 @RequiredArgsConstructor
@@ -20,6 +19,7 @@ public class initDB {
     public void init() {
         initService.dbInit1();
         initService.dbInit2();
+        initService.dbInit3();
     }
 
     @Component
@@ -30,6 +30,11 @@ public class initDB {
         private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
         public void dbInit1() {
+            Member member = new Member("관리자", "admin", bCryptPasswordEncoder.encode("admin"), "ROLE_ADMIN");
+            em.persist(member);
+        }
+
+        public void dbInit2() {
 
             Member member1 = new Member("서찬원1", "user1", bCryptPasswordEncoder.encode("user1"), "ROLE_USER");
             Address address1 = new Address("인천", "미추홀구", "10000");
@@ -43,11 +48,9 @@ public class initDB {
             Inventory item2 = new Inventory("모니터", 200, 20000, member1);
             em.persist(item1);
             em.persist(item2);
-
-
         }
 
-        public void dbInit2() {
+        public void dbInit3() {
             Member member2 = new Member("서찬원2", "user2", bCryptPasswordEncoder.encode("user2"), "ROLE_USER");
             Address address2 = new Address("서울", "강남", "20000");
 
@@ -63,5 +66,6 @@ public class initDB {
             em.persist(item4);
 
         }
+
     }
 }

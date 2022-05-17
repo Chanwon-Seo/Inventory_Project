@@ -27,6 +27,9 @@ public class Address {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    @OneToOne(mappedBy = "address", fetch = FetchType.LAZY)
+    private Order order;
+
     public Address(String city, String street, String zipcode) {
         this.city = city;
         this.street = street;

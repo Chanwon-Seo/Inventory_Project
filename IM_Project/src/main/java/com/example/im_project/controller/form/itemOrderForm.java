@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class itemOrderForm {
+public class ItemOrderForm {
 
     private Long id;
 

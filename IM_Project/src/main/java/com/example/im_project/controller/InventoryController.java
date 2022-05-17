@@ -2,7 +2,7 @@ package com.example.im_project.controller;
 
 import com.example.im_project.config.auth.PrincipalDetails;
 import com.example.im_project.controller.form.InventoryForm;
-import com.example.im_project.controller.form.itemOrderForm;
+import com.example.im_project.controller.form.ItemOrderForm;
 import com.example.im_project.controller.form.UpdateForm;
 import com.example.im_project.domain.Inventory;
 import com.example.im_project.service.InventoryService;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -83,7 +82,7 @@ public class InventoryController {
     @GetMapping("/items/{id}/minus")
     public String createForm(@PathVariable("id") Long id, Model model) {
 
-        itemOrderForm itemOrderForm = inventoryService.createOrder(id);
+        ItemOrderForm itemOrderForm = inventoryService.createOrder(id);
 
         model.addAttribute("itemOrderForm", itemOrderForm);
 
@@ -91,7 +90,7 @@ public class InventoryController {
     }
 
     @PostMapping("/items/{id}/minus")
-    public String addOrder(@PathVariable("id") Long id, @ModelAttribute("itemOrderForm") itemOrderForm form, BindingResult result) {
+    public String addOrder(@PathVariable("id") Long id, @ModelAttribute("itemOrderForm") ItemOrderForm form, BindingResult result) {
         int checkCount = inventoryService.minCount(id, form);
 
         System.out.println(checkCount);

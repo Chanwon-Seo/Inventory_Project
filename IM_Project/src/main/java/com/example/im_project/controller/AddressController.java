@@ -36,6 +36,6 @@ public class AddressController {
         String username = principalDetails.getUsername();
 
         addressService.addressJoin(addressForm, username);
-        return "redirect:/delivery/" + itemId;
+        return "redirect:/order/" + itemId;
     }
 }

@@ -31,6 +31,9 @@ public class Inventory {
     @JoinColumn(name = "member_id")
     private Member member;
 
+//    @OneToOne(fetch = FetchType.LAZY)
+//    private Order order;
+
     @PrePersist
     public void prePersist() {
         LocalDateTime now = LocalDateTime.now();
