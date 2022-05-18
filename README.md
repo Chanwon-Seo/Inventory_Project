@@ -27,3 +27,7 @@
 ### 2022-05-17 V7
 
 - Order CRUD
+
+### 2022-05-18 V8
+
+- Querydsl, Admin의 기능 추가
