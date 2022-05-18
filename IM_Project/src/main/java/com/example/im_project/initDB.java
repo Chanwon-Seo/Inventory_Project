@@ -12,14 +12,15 @@ import javax.persistence.EntityManager;
 @Component
 @RequiredArgsConstructor
 public class initDB {
+
     private final InitService initService;
 
 
-    @PostConstruct
+   @PostConstruct
     public void init() {
         initService.dbInit1();
-        initService.dbInit2();
-        initService.dbInit3();
+//        initService.dbInit2();
+//        initService.dbInit3();
     }
 
     @Component
@@ -33,7 +34,7 @@ public class initDB {
             Member member = new Member("관리자", "admin", bCryptPasswordEncoder.encode("admin"), "ROLE_ADMIN");
             em.persist(member);
         }
-
+/*
         public void dbInit2() {
 
             Member member1 = new Member("서찬원1", "user1", bCryptPasswordEncoder.encode("user1"), "ROLE_USER");
@@ -66,6 +67,6 @@ public class initDB {
             em.persist(item4);
 
         }
-
+*/
     }
 }

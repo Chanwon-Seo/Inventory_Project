@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -52,11 +51,6 @@ public class OrderService {
     public List<Order> findOrder(String username) {
         List<Order> findOrderByMemberId = orderRepository.findAllByMember_UserId(username);
         return findOrderByMemberId;
-    }
-
-    public List<Order> findList() {
-        List<Order> all = orderRepository.findAll();
-        return all;
     }
 
     @Transactional

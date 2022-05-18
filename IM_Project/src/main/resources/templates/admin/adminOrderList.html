@@ -20,6 +20,7 @@
                 <th>주소</th>
                 <th>상세주소</th>
                 <th>우편번호</th>
+                <th>결제 승인</th>
             </tr>
             </thead>
             <tbody>
@@ -35,9 +36,9 @@
                 <td th:text="${orderList.getAddress().street}"></td>
                 <td th:text="${orderList.getAddress().zipcode}"></td>
                 <td>
-                    <form th:action="@{/admin/orderList/{id} (id=${orderList.getId()})}" th:method="post">
-                        <button>발주수락</button>
-                    </form>
+                    <a th:if="${orderList.status.name() == 'ORDER'}" href="#"
+                       th:href="'javascript:approve('+${orderList.getId()}+')'"
+                       class="btn btn-danger">승인</a>
                 </td>
             </tr>
             </tbody>
@@ -45,4 +46,12 @@
     </div>
 </div> <!-- /container -->
 </body>
+<script>
+    function approve(id) {
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", "/admin/orderList/" + id + "");
+        document.body.appendChild(form);
+        form.submit();
+    }</script>
 </html>
