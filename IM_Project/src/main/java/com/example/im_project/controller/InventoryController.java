@@ -93,8 +93,6 @@ public class InventoryController {
     public String addOrder(@PathVariable("id") Long id, @ModelAttribute("itemOrderForm") ItemOrderForm form, BindingResult result) {
         int checkCount = inventoryService.minCount(id, form);
 
-        System.out.println(checkCount);
-
         if (checkCount == 0) {
             result.reject("orderCountOver", "출고 수량 부족");
         }

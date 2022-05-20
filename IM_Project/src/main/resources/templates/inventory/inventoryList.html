@@ -26,29 +26,28 @@
                 <td th:text="${item.count}"></td>
                 <td>
                     <form th:action="@{/items/{id}/minus (id=${item.id})}" th:method="get">
-                        <button>출고</button>
+                        <button class="btn btn-primary">출고</button>
                     </form>
                 </td>
                 <td>
                     <form th:action="@{/items/{id}/remove (id=${item.id})}" th:method="post">
-                        <button>삭제</button>
+                        <button class="btn btn-primary">삭제</button>
                     </form>
                 </td>
                 <td>
                     <form th:action="@{/items/{id}/edit (id=${item.id})}" th:method="get">
-                        <button>수정</button>
+                        <button class="btn btn-primary">수정</button>
                     </form>
                 </td>
                 <td>
                     <form th:action="@{/order/{id} (id=${item.id})}" th:method="get">
-                        <button>발주</button>
+                        <button class="btn btn-primary">발주</button>
                     </form>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
-
     <a href="/item/new">재고 생성하기</a>
 </div> <!-- /container -->
 </body>

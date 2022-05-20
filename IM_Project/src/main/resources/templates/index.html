@@ -7,33 +7,24 @@
 <body>
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
-    <table border="1">
-        <tr>
-            <td>
-                <a href="/joinForm"><p>회원가입</p></a>
-            </td>
-            <td>
-                <a href="/loginForm"><p>로그인</p></a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href="/item/new"><p>재고등록</p></a>
-            </td>
-            <td>
-                <a href="/item/findAll"><p>재고목록</p></a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href="/order/orderList"><p>주문내역</p></a>
-            </td>
-            <td>
-                <a href="/admin/orderList"><p>발주관리(관리자)</p></a>
-            </td>
-        </tr>
-    </table>
+    <div class="jumbotron">
+        <h1>Hello Inventory management</h1>
+        <p class="lead">회원 기능</p>
+        <p>
+            <a class="btn btn-lg btn-secondary" href="/joinForm">회원가입</a>
+            <a class="btn btn-lg btn-secondary" href="/loginForm">로그인</a>
+        </p>
+        <p class="lead">재고 기능</p>
+        <p>
+            <a class="btn btn-lg btn-dark" href="/item/new">재고등록</a>
+            <a class="btn btn-lg btn-dark" href="/item/findAll">재고목록</a>
+        </p>
+        <p class="lead">배송 기능</p>
+        <p>
+            <a class="btn btn-lg btn-info" href="/order/orderList">주문내역</a>
+            <a class="btn btn-lg btn-info" href="/admin/orderList">발주관리(관리자)</a>
+        </p>
+    </div>
 </div> <!-- /container -->
-
 </body>
 </html>

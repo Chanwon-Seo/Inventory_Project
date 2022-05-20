@@ -22,12 +22,6 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    @GetMapping("/login")
-    public String home1(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
-        String username = principalDetails.getUsername();
-        model.addAttribute("data", username);
-        return "fragments/bodyHeader";
-    }
 
     @GetMapping("/joinForm")
     public String joinForm(Model model) {
