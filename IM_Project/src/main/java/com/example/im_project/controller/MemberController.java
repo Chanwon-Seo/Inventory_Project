@@ -28,12 +28,14 @@ public class MemberController {
         model.addAttribute("memberForm", new MemberForm());
         return "/auth/joinForm";
     }
+
     @PostMapping("/join")
     public String join(@Valid MemberForm form, BindingResult result) {
 
         if (result.hasErrors()) {
-            return "/auth/loginForm";
+            return "/auth/joinForm";
         }
+
         memberService.join(form);
         return "/auth/loginForm";
     }

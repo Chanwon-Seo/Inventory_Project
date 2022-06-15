@@ -33,7 +33,7 @@
         </div>
 
         <div th:if="${#fields.hasGlobalErrors()}">
-            <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">출고 수량 에러</p>
+            <p style="color: red" th:each="err : ${#fields.globalErrors()}" th:text="${err}">출고 수량 에러</p>
         </div>
         <button type="submit" class="btn btn-primary">출고</button>
     </form>

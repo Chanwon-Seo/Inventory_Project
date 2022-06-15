@@ -22,7 +22,8 @@
         <p class="lead">배송 기능</p>
         <p>
             <a class="btn btn-lg btn-info" href="/order/orderList">주문내역</a>
-            <a class="btn btn-lg btn-info" href="/admin/orderList">발주관리(관리자)</a>
+            <a th:if="${adminChk.equals('admin')}" class="btn btn-lg btn-info" href="/admin/orderList">발주관리(관리자)</a>
+            <!--adminChk가 null일 경우 보이지 않아야 함    th:if="${adminChk.equals('admin')}"-->
         </p>
     </div>
 </div> <!-- /container -->

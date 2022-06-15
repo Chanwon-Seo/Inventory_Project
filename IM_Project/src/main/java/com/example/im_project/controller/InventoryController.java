@@ -43,7 +43,8 @@ public class InventoryController {
         String sessionUser_id = principalDetails.getUsername();
         inventoryService.join(inventoryForm, sessionUser_id);
 
-        return "index";
+        return "redirect:/";
+
     }
 
     @GetMapping("/item/findAll")
